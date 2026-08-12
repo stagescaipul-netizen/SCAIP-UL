@@ -502,7 +502,7 @@ function VideoGuide({ onContinue }: { onContinue: () => void }) {
 
         <div className="bg-slate-950">
           <video
-            className="aspect-video w-full"
+            className="mx-auto aspect-video w-full max-w-[820px]"
             controls
             playsInline
             preload="metadata"
