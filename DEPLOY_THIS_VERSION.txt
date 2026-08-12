@@ -1,0 +1,4 @@
+STAGEPERMIT NETLIFY FINAL - GMAIL SMTP
+Generated: 2026-07-19
+This package contains no Resend import and no lib/email/send-documents.ts file.
+Deploy this exact ZIP to Netlify Drop.

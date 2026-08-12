@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Navigation agent : le menu latéral reste visible sur ordinateur et
+   devient un tiroir fiable sur téléphone/tablette. */
+.agent-desktop-sidebar {
+  display: none;
+}
+
+.agent-menu-button {
+  display: flex;
+}
+
+@media (min-width: 900px) {
+  .agent-desktop-sidebar {
+    display: block;
+  }
+
+  .agent-menu-button,
+  .agent-mobile-overlay {
+    display: none !important;
+  }
+}
