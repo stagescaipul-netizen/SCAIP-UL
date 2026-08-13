@@ -522,8 +522,8 @@ function VideoGuide({ onContinue }: { onContinue: () => void }) {
             Avant de commencer ta demande
           </h1>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 sm:text-base">
-            Regarde cette vidéo de 2 min 42 pour comprendre chaque étape, préparer ton
-            justificatif et éviter les erreurs.
+            Regarde cette vidéo de quelques minutes pour comprendre les étapes, préparer ton
+            dossier et éviter les erreurs.
           </p>
         </div>
 
