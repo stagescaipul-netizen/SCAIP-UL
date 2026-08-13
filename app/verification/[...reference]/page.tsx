@@ -78,7 +78,7 @@ export default async function VerificationPage({
         </div>
 
         <div className="border-t border-slate-100 bg-slate-50 px-5 py-3 text-center text-[11px] text-slate-500">
-          Document certifié par le Service Conseil et Aide à l&apos;Insertion Professionnelle, Université de
+          Délivré par le Service Conseil et Aide à l&apos;Insertion Professionnelle, Université de
           Labé.
         </div>
       </div>

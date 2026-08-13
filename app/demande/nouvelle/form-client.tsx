@@ -416,45 +416,72 @@ export default function DemandeForm({
 
         <div data-step="4" className={step === 4 ? '' : 'hidden'}>
           <div className="rounded-md bg-slate-50 p-3 text-xs text-slate-600">
-            Deux documents seront générés automatiquement : Autorisation de stage et Lettre de
-            recommandation.
+            <p className="font-medium text-slate-700">
+              Les documents suivants seront générés automatiquement après validation de votre demande :
+            </p>
+            <ul className="mt-2 list-disc space-y-1 pl-5">
+              <li>Autorisation de stage</li>
+              <li>Lettre de recommandation</li>
+            </ul>
           </div>
-          <div className="mt-2 rounded-md bg-amber-50 p-3 text-xs font-medium text-amber-800">
-            Votre document sera valable {dureeValiditeMois} mois. Une seule demande est autorisée
-            pendant cette période. Vérifiez l&apos;exactitude de vos informations avant de
-            soumettre, une correction après validation nécessite de contacter le service.
-          </div>
+
           <input
             type="hidden"
             name="type_responsable_verification"
             value={typeResponsableActuel}
           />
-          <label className="mt-3 flex flex-col gap-1 text-sm text-slate-600">
-            {typeResponsableActuel === 'chef_departement'
-              ? `Nom du chef de département « ${values.departement || 'votre département'} »`
-              : `Nom du directeur de programme du département « ${values.departement || 'votre département'} »`}
+
+          <label className="mt-4 flex flex-col gap-1 text-sm text-slate-600">
+            <span className="font-medium text-slate-700">
+              {typeResponsableActuel === 'chef_departement'
+                ? 'Nom du chef de département'
+                : 'Nom du directeur de programme'}
+            </span>
+            <span className="text-xs text-slate-500">
+              {typeResponsableActuel === 'chef_departement'
+                ? `Veuillez renseigner le nom du chef du département ${values.departement || 'renseigné précédemment'}.`
+                : `Veuillez renseigner le nom du directeur de programme du département ${values.departement || 'renseigné précédemment'}.`}
+            </span>
             <input
               name="responsable_declare"
               required
               value={values.responsable_declare}
-              onChange={(e) => setValues((v) => ({ ...v, responsable_declare: e.target.value.toUpperCase() }))}
+              onChange={(e) =>
+                setValues((v) => ({
+                  ...v,
+                  responsable_declare: e.target.value.toUpperCase(),
+                }))
+              }
               className="h-10 rounded-md border border-slate-300 px-3 text-sm text-slate-900 uppercase"
             />
           </label>
-          <label className="mt-3 flex items-start gap-2 text-sm text-slate-700">
+
+          <label className="mt-4 flex items-start gap-2 text-sm text-slate-700">
             <input type="checkbox" name="cert_statut_etudiant" required className="mt-0.5" />
-            Je certifie que je suis étudiant(e) régulièrement inscrit(e) à l&apos;Université de
-            Labé.
-          </label>
-          <label className="mt-2 flex items-start gap-2 text-sm text-slate-700">
-            <input type="checkbox" name="cert_exactitude" required className="mt-0.5" />
-            Je certifie que les informations fournies sont exactes.
+            Je certifie être régulièrement inscrit(e) à l&apos;Université de Labé.
           </label>
 
-          {/* hCaptcha — clé de site non configurée dans cet environnement,
-              jamais testée avec une vraie clé. */}
+          <label className="mt-2 flex items-start gap-2 text-sm text-slate-700">
+            <input type="checkbox" name="cert_exactitude" required className="mt-0.5" />
+            Je certifie que toutes les informations fournies sont exactes et complètes.
+          </label>
+
+          <div className="mt-4 rounded-md bg-amber-50 p-3 text-xs text-amber-800">
+            <p className="font-semibold">⚠️ Important</p>
+            <p className="mt-1 leading-5">
+              Les documents générés sont valables pendant {dureeValiditeMois} mois. Une seule
+              demande est autorisée durant cette période. Avant de soumettre votre demande,
+              vérifiez attentivement toutes les informations saisies. Après validation, toute
+              modification nécessitera une prise de contact avec le Service Conseil et Aide à
+              l&apos;Insertion Professionnelle (SCAIP-UL).
+            </p>
+          </div>
+
           {process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY && (
-            <div className="h-captcha mt-3" data-sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY} />
+            <div
+              className="h-captcha mt-3"
+              data-sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY}
+            />
           )}
 
           {state.error && <p className="mt-3 text-sm text-red-600">{state.error}</p>}
