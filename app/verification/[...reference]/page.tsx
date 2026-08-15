@@ -77,9 +77,46 @@ export default async function VerificationPage({
           )}
         </div>
 
-        <div className="border-t border-slate-100 bg-slate-50 px-5 py-3 text-center text-[11px] text-slate-500">
-          Délivré par le Service Conseil et Aide à l&apos;Insertion Professionnelle, Université de
-          Labé.
+        <div
+          className={`border-t px-5 py-4 text-center text-[11px] ${
+            statutEffectif === 'valide'
+              ? 'border-emerald-100 bg-emerald-50 text-emerald-800'
+              : statutEffectif === 'expire'
+                ? 'border-amber-100 bg-amber-50 text-amber-800'
+                : statutEffectif === 'invalide_manuellement'
+                  ? 'border-red-100 bg-red-50 text-red-800'
+                  : 'border-slate-100 bg-slate-50 text-slate-500'
+          }`}
+        >
+          {statutEffectif === 'valide' && (
+            <p>
+              Ce document a été délivré par le Service Conseil et Aide à l&apos;Insertion
+              Professionnelle de l&apos;Université de Labé.
+            </p>
+          )}
+
+          {statutEffectif === 'invalide_manuellement' && (
+            <p>
+              Ce document a été invalidé par le Service Conseil et Aide à l&apos;Insertion
+              Professionnelle de l&apos;Université de Labé. Il n&apos;est plus valable et ne doit plus
+              être utilisé ni présenté dans le cadre d&apos;une démarche administrative ou
+              professionnelle.
+            </p>
+          )}
+
+          {statutEffectif === 'expire' && (
+            <p>
+              Ce document a dépassé sa période de validité. Il n&apos;est plus valable et ne doit plus
+              être utilisé ni présenté dans le cadre d&apos;une démarche administrative ou
+              professionnelle. Merci d&apos;effectuer une nouvelle demande auprès du SCAIP-UL.
+            </p>
+          )}
+
+          {!doc && (
+            <p>
+              Cette référence ne correspond à aucun document délivré par le SCAIP-UL.
+            </p>
+          )}
         </div>
       </div>
     </main>
