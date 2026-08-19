@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   signatureOverlay: { position: 'absolute', left: 48, top: 18, width: 150, height: 52, objectFit: 'contain' },
   combinedImage: { width: 180, height: 72, marginBottom: 6, objectFit: 'contain' },
   signBoxText: { fontSize: 8, color: '#999', fontStyle: 'italic' },
-  signatureBlock: { width: 220, alignItems: 'center', alignSelf: 'flex-end', marginRight: 8 },
+  signatureBlock: { width: 220, alignItems: 'center', alignSelf: 'flex-start', marginLeft: 0 },
   signName: { width: 220, fontSize: 10, fontWeight: 700, textAlign: 'center', marginTop: 2 },
   signFunction: { width: 220, fontSize: 8, fontWeight: 600, textAlign: 'center', lineHeight: 1.15, marginTop: 3 },
   verifRow: { position: 'absolute', bottom: 46, left: 34, right: 34, flexDirection: 'row', borderWidth: 1, borderColor: RED, padding: 10, alignItems: 'center' },
