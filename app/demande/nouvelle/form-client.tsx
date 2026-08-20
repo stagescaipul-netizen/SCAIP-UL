@@ -197,14 +197,14 @@ export default function DemandeForm({
             )}
 
             {peutTelecharger && state.urlDocuments ? (
-              <a
+              <Link
                 href={state.urlDocuments}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 flex h-11 items-center justify-center rounded-md bg-[#1F3B4D] text-sm font-semibold text-white"
               >
                 Télécharger mes documents
-              </a>
+              </Link>
             ) : (
               <Link
                 href="/suivi"
