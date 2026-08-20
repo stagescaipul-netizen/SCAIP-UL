@@ -26,14 +26,15 @@ const styles = StyleSheet.create({
   fieldValue: { flex: 1, fontSize: 10.5 },
   faitA: { fontSize: 10.5, marginTop: 14, marginBottom: 20 },
   signBox: { borderWidth: 1, borderStyle: 'dashed', borderColor: '#999', width: 220, height: 55, alignItems: 'center', justifyContent: 'center', marginBottom: 6 },
-  authVisual: { position: 'relative', width: 220, height: 78, marginBottom: 6 },
+  authVisual: { position: 'relative', width: 220, height: 78, marginBottom: 6, marginLeft: -18 },
   stampImage: { position: 'absolute', left: 22, top: 0, width: 100, height: 76, objectFit: 'contain' },
   signatureOverlay: { position: 'absolute', left: 48, top: 18, width: 150, height: 52, objectFit: 'contain' },
   combinedImage: { width: 180, height: 72, marginBottom: 6, objectFit: 'contain' },
   signBoxText: { fontSize: 8, color: '#999', fontStyle: 'italic' },
   signatureBlock: { width: 220, alignItems: 'center', alignSelf: 'flex-start', marginLeft: 0 },
-  signName: { width: 220, fontSize: 10, fontWeight: 700, textAlign: 'left', marginTop: 2, marginLeft: 18 },
-  signFunction: { width: 220, fontSize: 8, fontWeight: 600, textAlign: 'left', lineHeight: 1.15, marginTop: 3, marginLeft: 0 },
+  signName: { width: 220, fontSize: 10, fontWeight: 700, textAlign: 'center', marginTop: 2 },
+  signFunctionTop: { width: 220, fontSize: 8, fontWeight: 600, textAlign: 'center', lineHeight: 1.15, marginTop: 3 },
+  signFunctionBottom: { width: 220, fontSize: 8, fontWeight: 600, textAlign: 'left', lineHeight: 1.15, marginTop: 1 },
   verifRow: { position: 'absolute', bottom: 46, left: 34, right: 34, flexDirection: 'row', borderWidth: 1, borderColor: RED, padding: 10, alignItems: 'center' },
   verifText: { flex: 1, paddingRight: 10 },
   verifItalic: { fontSize: 8, fontStyle: 'italic', color: '#333', marginBottom: 4 },
@@ -86,9 +87,13 @@ function Header({ identite }: { identite: IdentiteInstitutionnelle }) {
 function SignatureBlock({ identite }: { identite: IdentiteInstitutionnelle }) {
   const completeSeparate = identite.signatureImageBuffer && identite.cachetImageBuffer;
   const completeCombined = identite.combinedImageBuffer;
-  const fonctionAffichee = identite.fonction.includes(' et Aide')
-    ? identite.fonction.replace(' et Aide', '\net Aide')
-    : identite.fonction;
+  const [fonctionLigne1, fonctionLigne2] = identite.fonction.includes(' et Aide')
+    ? identite.fonction.split(' et Aide')
+    : [identite.fonction, ''];
+
+  const fonctionLigne2Affichee = fonctionLigne2
+    ? `et Aide${fonctionLigne2}`
+    : '';
 
   return (
     <View style={styles.signatureBlock}>
@@ -103,7 +108,10 @@ function SignatureBlock({ identite }: { identite: IdentiteInstitutionnelle }) {
         <View style={styles.signBox}><Text style={styles.signBoxText}>Signature et cachet non configurés</Text></View>
       )}
       <Text style={styles.signName}>{identite.signataire}</Text>
-      <Text style={styles.signFunction}>{fonctionAffichee}</Text>
+      <Text style={styles.signFunctionTop}>{fonctionLigne1}</Text>
+      {fonctionLigne2Affichee && (
+        <Text style={styles.signFunctionBottom}>{fonctionLigne2Affichee}</Text>
+      )}
     </View>
   );
 }
